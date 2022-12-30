@@ -30,9 +30,10 @@ class Tree {
 
 	verify(transaction) {
 		let pos  = this.root.slice(-1)[0].findIndex(t => t.hash == transaction.hash);
+		
 		if(pos >= 0) {
-			let txHash = transaction.hash;
-			//console.log(transaction);
+			let txHash = generateHash(transaction.to + transaction.from + transaction.amount + transaction.txUuid);
+			
 			for(let i = this.root.length -2; i > 0; i--) {
 				let neighbor;
 				//console.log(pos % 2);
